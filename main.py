@@ -11,7 +11,7 @@ app = Flask(__name__)
 def home():
 
     if request.method == 'POST':
-        m = Message(content=html.escape(request.form['content']))
+        m = Message(content=request.form['content'])
         m.save()
 
     body = """
@@ -32,7 +32,7 @@ def home():
 <div class="message">
 {}
 </div>
-""".format(m.content)
+""".format(html.escape(m.content))
 
     return body 
 
